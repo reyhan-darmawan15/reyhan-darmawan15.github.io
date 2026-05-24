@@ -1,0 +1,44 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const { 
+  title = "Reyhan Issatyadi Darmawan — Electronics & Embedded Systems Engineer",
+  description = "Electronics engineer and embedded systems developer specializing in STM32, firmware, analog front-end design, and biomedical signal acquisition."
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#00ff9d" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Intersection observer for fade-up animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(el => {
+          if (el.isIntersecting) {
+            el.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>
+<style is:global>
+  @import '../styles/global.css';
+</style>

@@ -1,0 +1,6 @@
+# Cloudflare Pages — wrangler.toml
+# Alternative deployment to Cloudflare Pages
+# Run: npx wrangler pages deploy dist --project-name reyhan-portfolio
+
+[env.production]
+name = "reyhan-portfolio"

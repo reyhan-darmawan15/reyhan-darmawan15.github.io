@@ -1,0 +1,74 @@
+---
+const skillGroups = [
+  {
+    category: "Microcontrollers",
+    tags: ["STM32F401", "ATmega328P", "STM32 HAL", "STM32CubeIDE"],
+  },
+  {
+    category: "Embedded Firmware",
+    tags: ["C (bare-metal)", "Interrupt-driven", "DMA", "Register-level"],
+  },
+  {
+    category: "Comm Protocols",
+    tags: ["UART", "SPI", "I2C", "USB CDC", "ADC/DAC", "PWM"],
+  },
+  {
+    category: "Signal Processing",
+    tags: ["DSP", "ECG acquisition", "Noise reduction"],
+  },
+  {
+    category: "Analog Electronics",
+    tags: [
+      "Differential amplifiers",
+      "Instrumentation amps",
+      "Sample & Hold",
+      "MUX 8:1",
+      "Optoisolator",
+    ],
+  },
+  {
+    category: "Programming",
+    tags: ["C/C++", "Python", "C# (WinForms)", "SQL"],
+  },
+  {
+    category: "RPA & BA",
+    tags: ["UiPath", "JIRA", "Lark", "SIT / UAT", "Requirements elicitation"],
+  },
+  {
+    category: "Tools & Creative",
+    tags: [
+      "Visual Studio",
+      "Git",
+      "Blender",
+      "Unreal Engine 5",
+      "FL Studio",
+      "Adobe Audition",
+    ],
+  },
+];
+---
+
+<section id="skills">
+  <div class="container">
+    <div class="section-label">// 02</div>
+    <div class="section-title">Technical Skills</div>
+
+    <div class="skills-grid">
+      {
+        skillGroups.map((group, i) => (
+          <div
+            class="panel skill-card fade-up"
+            style={`transition-delay: ${i * 60}ms`}
+          >
+            <h3>{group.category}</h3>
+            <div class="tags">
+              {group.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
