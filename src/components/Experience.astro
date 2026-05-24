@@ -1,0 +1,54 @@
+---
+const jobs = [
+  {
+    title: "Business Analyst – RPA",
+    company: "PT IDStar Cipta Teknologi",
+    dates: "2025 – 2026",
+    tools: ["JIRA", "UiPath", "SQL", "Lark", "MS Office"],
+    bullets: [
+      "Elicited and documented automation requirements from business stakeholders, translating complex operational workflows into precise technical specifications.",
+      "Designed end-to-end automation blueprints and validated them through SIT and UAT testing phases.",
+      "Coordinated sprint planning and backlog grooming with engineering teams, maintaining clear project status visibility.",
+    ]
+  },
+  {
+    title: "Software Engineer – RPA",
+    company: "PT Indocyber Global Teknologi",
+    dates: "2022 – 2025",
+    tools: ["UiPath", "SQL"],
+    bullets: [
+      "Developed, deployed, and maintained production-grade RPA bots using UiPath, automating high-volume business processes.",
+      "Performed internal unit and integration testing throughout development, reducing post-deployment defect rates.",
+      "Analyzed and resolved runtime exceptions and bot failures, improving reliability for critical business workflows.",
+      "Collaborated with SQL databases for data extraction, transformation, and validation within automated pipelines.",
+    ]
+  }
+];
+---
+
+<section id="experience">
+  <div class="container">
+    <div class="section-label">// 03</div>
+    <div class="section-title">Work Experience</div>
+
+    <div class="exp-list">
+      {jobs.map((job, i) => (
+        <div class="panel fade-up" style={`transition-delay: ${i * 80}ms`}>
+          <div class="exp-header">
+            <div class="exp-title">{job.title}</div>
+            <div class="exp-date">{job.dates}</div>
+          </div>
+          <div class="exp-company">{job.company}</div>
+          <div style="margin-bottom:12px;">
+            {job.tools.map(t => <span class="tag">{t}</span>)}
+          </div>
+          <div class="exp-desc">
+            <ul>
+              {job.bullets.map(b => <li>{b}</li>)}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

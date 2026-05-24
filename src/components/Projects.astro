@@ -1,0 +1,88 @@
+---
+const projects = [
+  {
+    title: "Computer-Based 12-Lead ECG System",
+    type: "Hardware · Firmware · Desktop App",
+    repoUrl: "https://github.com/reyhan-darmawan15/stm32f401-usb-ecg",
+    driveUrl: "https://drive.google.com/drive/folders/1nCGoXV7f6TMWCsVlI6_14TAxHccEa7LT",
+    highlight: "Full-stack biomedical device — from electrode pads to a live-rendering Windows app — built entirely from scratch.",
+    tags: ["STM32F401", "ATmega328P", "C (firmware)", "C# WinForms", "SPI", "UART", "USB CDC", "ADC 12-bit", "DSP", "Optoisolator"],
+    bullets: [
+      "Analog front-end on ATmega328P: differential amplifiers (×3), RF filters, 8:1 MUX with sample-and-hold, DC amplifier (×256) across 10 electrode leads.",
+      "STM32F401 firmware: SPI-driven 12-bit ADC/DAC, 50 Hz notch filter, LPF 150 Hz, USB CDC transmission — all interrupt & DMA driven.",
+      "Galvanic isolation via optoisolators between analog and digital domains for patient safety compliance.",
+      "Windows Forms application with real-time 12-lead display, automated PDF report generation, and CSV data export.",
+      "Validated PQRST morphology at clinical 25 mm/s sweep speed and 10 mm/mV amplitude calibration.",
+    ]
+  },
+  {
+    title: "Mental Health Game Jam 2024 — Social Distancing",
+    type: "Audio · Game Jam",
+    repoUrl: null,
+    driveUrl: "https://atwp.itch.io/social-distancing",
+    driveLabel: "Play on itch.io",
+    highlight: "Original soundtrack composed and produced for a 72-hour game jam entry exploring mental health themes.",
+    tags: ["FL Studio", "Adobe Audition", "Composition", "Sound Design"],
+    bullets: [
+      "Composed and produced the complete audio experience using FL Studio and Adobe Audition.",
+      "Collaborated remotely with a game development team under strict jam constraints.",
+    ]
+  },
+  {
+    title: "Agate Game Course — 3D Animation (Batch 6, 2024)",
+    type: "3D · Education",
+    repoUrl: null,
+    driveUrl: null,
+    highlight: "Structured 3D animation training as part of a formal game development curriculum.",
+    tags: ["Blender", "Unity", "3D Modeling", "Animation"],
+    bullets: [
+      "Completed rigging, keyframe animation, and scene composition modules in Blender.",
+      "Integrated assets into Unity for real-time 3D rendering and interaction.",
+    ]
+  }
+];
+---
+
+<section id="projects">
+  <div class="container">
+    <div class="section-label">// 04</div>
+    <div class="section-title">Projects</div>
+
+    <div class="projects-grid">
+      {projects.map((p, i) => (
+        <div class="panel fade-up" style={`transition-delay: ${i * 80}ms`}>
+          <div class="project-header">
+            <div>
+              <div class="project-title">{p.title}</div>
+              <div style="font-size:0.76rem; color:var(--text-muted); font-family:var(--mono); margin-top:2px;">{p.type}</div>
+            </div>
+            <div class="project-links">
+              {p.repoUrl && (
+                <a href={p.repoUrl} target="_blank" rel="noopener" class="btn" style="padding:6px 12px; font-size:0.72rem;">
+                  GitHub ↗
+                </a>
+              )}
+              {p.driveUrl && (
+                <a href={p.driveUrl} target="_blank" rel="noopener" class="btn" style="padding:6px 12px; font-size:0.72rem;">
+                  {p.driveLabel ?? 'Data ↗'}
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div class="project-highlight">{p.highlight}</div>
+
+          <div class="exp-desc" style="margin-bottom:14px;">
+            <ul>
+              {p.bullets.map(b => <li>{b}</li>)}
+            </ul>
+          </div>
+
+          <div class="tags">
+            {p.tags.map(t => <span class="tag">{t}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
