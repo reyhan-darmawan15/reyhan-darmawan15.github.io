@@ -45,16 +45,16 @@ const projects = [
 
 <section id="projects">
   <div class="container">
-    <div class="section-label">// 04</div>
+    <div class="section-label">04 / PROJECTS</div>
     <div class="section-title">Projects</div>
 
     <div class="projects-grid">
-      {projects.map((p, i) => (
-        <div class="panel fade-up" style={`transition-delay: ${i * 80}ms`}>
+      {projects.map((p) => (
+        <div class="panel">
           <div class="project-header">
             <div>
               <div class="project-title">{p.title}</div>
-              <div style="font-size:0.76rem; color:var(--text-muted); font-family:var(--mono); margin-top:2px;">{p.type}</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); font-family:var(--mono); margin-top:4px;">{p.type}</div>
             </div>
             <div class="project-links">
               {p.repoUrl && (

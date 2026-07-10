@@ -1,15 +1,14 @@
 ---
 ---
 <section id="hero">
-  <canvas class="hero-bg-canvas" id="ecgCanvas"></canvas>
   <div class="container">
     <div class="hero-content">
       <div class="hero-tag">Electronics &amp; Embedded Systems Engineer</div>
       <h1 class="hero-name">
-        Reyhan Issatyadi<br />Darmawan<span class="cursor"></span>
+        Reyhan Issatyadi<br />Darmawan
       </h1>
       <div class="hero-role">
-        &gt; STM32 · DSP · Analog Front-End · Firmware · RPA
+        STM32 · DSP · Analog Front-End · Firmware · RPA
       </div>
       <p class="hero-desc">
         Building hardware that talks to the body — from 12-lead ECG systems 
@@ -24,90 +23,3 @@
     </div>
   </div>
 </section>
-
-<script>
-const canvas = document.getElementById('ecgCanvas') as HTMLCanvasElement;
-const ctx = canvas.getContext('2d')!;
-
-let W: number, H: number;
-let t = 0;
-let animId: number;
-
-function resize() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
-
-// Generate ECG-like waveform value at position x
-function ecgWave(x: number): number {
-  const cycle = x % 1.0;
-  // P wave
-  if (cycle < 0.12) return Math.sin(cycle / 0.12 * Math.PI) * 0.12;
-  // PQ segment
-  if (cycle < 0.18) return 0.01;
-  // Q dip
-  if (cycle < 0.20) return -0.08 * Math.sin((cycle - 0.18) / 0.02 * Math.PI);
-  // R spike
-  if (cycle < 0.25) return Math.sin((cycle - 0.20) / 0.05 * Math.PI) * 1.0;
-  // S dip
-  if (cycle < 0.28) return -0.15 * Math.sin((cycle - 0.25) / 0.03 * Math.PI);
-  // ST segment
-  if (cycle < 0.40) return 0.02;
-  // T wave
-  if (cycle < 0.58) return Math.sin((cycle - 0.40) / 0.18 * Math.PI) * 0.22;
-  // Baseline
-  return 0;
-}
-
-function draw() {
-  ctx.clearRect(0, 0, W, H);
-
-  // Draw grid
-  ctx.strokeStyle = 'rgba(0, 255, 157, 0.04)';
-  ctx.lineWidth = 1;
-  const gridSize = 40;
-  for (let x = 0; x < W; x += gridSize) {
-    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-  }
-  for (let y = 0; y < H; y += gridSize) {
-    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-  }
-
-  // Draw 3 staggered ECG traces
-  const traces = [
-    { y: H * 0.38, amp: H * 0.13, speed: 0.0004, alpha: 0.55, width: 1.5 },
-    { y: H * 0.62, amp: H * 0.09, speed: 0.0003, alpha: 0.25, width: 1.0 },
-    { y: H * 0.80, amp: H * 0.06, speed: 0.00025, alpha: 0.12, width: 0.8 },
-  ];
-
-  traces.forEach(({ y, amp, speed, alpha, width }) => {
-    const phase = t * speed;
-    const freq = 3.5; // cycles visible on screen
-
-    ctx.beginPath();
-    ctx.lineWidth = width;
-    ctx.strokeStyle = `rgba(0, 255, 157, ${alpha})`;
-
-    // Glow pass
-    ctx.shadowColor = '#00ff9d';
-    ctx.shadowBlur = alpha > 0.4 ? 8 : 3;
-
-    for (let px = 0; px <= W; px += 1) {
-      const xNorm = (px / W) * freq + phase;
-      const wave = ecgWave(xNorm);
-      const py = y - wave * amp;
-      if (px === 0) ctx.moveTo(px, py);
-      else ctx.lineTo(px, py);
-    }
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-  });
-
-  t++;
-  animId = requestAnimationFrame(draw);
-}
-
-resize();
-draw();
-window.addEventListener('resize', resize);
-</script>
