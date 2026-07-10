@@ -28,12 +28,12 @@ const jobs = [
 
 <section id="experience">
   <div class="container">
-    <div class="section-label">// 03</div>
+    <div class="section-label">03 / EXPERIENCE</div>
     <div class="section-title">Work Experience</div>
 
     <div class="exp-list">
-      {jobs.map((job, i) => (
-        <div class="panel fade-up" style={`transition-delay: ${i * 80}ms`}>
+      {jobs.map((job) => (
+        <div class="panel">
           <div class="exp-header">
             <div class="exp-title">{job.title}</div>
             <div class="exp-date">{job.dates}</div>

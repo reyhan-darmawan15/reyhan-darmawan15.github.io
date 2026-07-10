@@ -50,16 +50,13 @@ const skillGroups = [
 
 <section id="skills">
   <div class="container">
-    <div class="section-label">// 02</div>
+    <div class="section-label">02 / SKILLS</div>
     <div class="section-title">Technical Skills</div>
 
     <div class="skills-grid">
       {
-        skillGroups.map((group, i) => (
-          <div
-            class="panel skill-card fade-up"
-            style={`transition-delay: ${i * 60}ms`}
-          >
+        skillGroups.map((group) => (
+          <div class="panel skill-card">
             <h3>{group.category}</h3>
             <div class="tags">
               {group.tags.map((tag) => (
