@@ -1,19 +1,52 @@
 ---
 const projects = [
   {
+    title:
+      "[Unreal Engine 5 - ONGOING] Anime Rally Game (Can't tell the title yet)",
+    type: "PC - Single Player",
+    repoUrl: null,
+    driveUrl: null,
+    highlight: "Story-driven anime rally game made with Unreal Engine 5",
+    tags: ["Unreal Engine 5", "Anime", "Story-driven", "Rally Games"],
+    bullets: [
+      "Fully anime style graphics powered by UE5 Substrate Material system.",
+      "Advanced damage modelling for better rally immersion.",
+      "Story-driven career mode with multiple endings.",
+    ],
+    image: "/public/ruka.png", // e.g. "/projects/ecg.jpg"
+    placeholderTheme: "cyan",
+    icon: "ecg",
+  },
+  {
     title: "Computer-Based 12-Lead ECG System",
     type: "Hardware · Firmware · Desktop App",
     repoUrl: "https://github.com/reyhan-darmawan15/stm32f401-usb-ecg",
-    driveUrl: "https://drive.google.com/drive/folders/1nCGoXV7f6TMWCsVlI6_14TAxHccEa7LT",
-    highlight: "Full-stack biomedical device — from electrode pads to a live-rendering Windows app — built entirely from scratch.",
-    tags: ["STM32F401", "ATmega328P", "C (firmware)", "C# WinForms", "SPI", "UART", "USB CDC", "ADC 12-bit", "DSP", "Optoisolator"],
+    driveUrl:
+      "https://drive.google.com/drive/folders/1nCGoXV7f6TMWCsVlI6_14TAxHccEa7LT",
+    highlight:
+      "Full-stack biomedical device — from electrode pads to a live-rendering Windows app — built entirely from scratch.",
+    tags: [
+      "STM32F401",
+      "ATmega328P",
+      "C (firmware)",
+      "C# WinForms",
+      "SPI",
+      "UART",
+      "USB CDC",
+      "ADC 12-bit",
+      "DSP",
+      "Optoisolator",
+    ],
     bullets: [
       "Analog front-end on ATmega328P: differential amplifiers (×3), RF filters, 8:1 MUX with sample-and-hold, DC amplifier (×256) across 10 electrode leads.",
       "STM32F401 firmware: SPI-driven 12-bit ADC/DAC, 50 Hz notch filter, LPF 150 Hz, USB CDC transmission — all interrupt & DMA driven.",
       "Galvanic isolation via optoisolators between analog and digital domains for patient safety compliance.",
       "Windows Forms application with real-time 12-lead display, automated PDF report generation, and CSV data export.",
       "Validated PQRST morphology at clinical 25 mm/s sweep speed and 10 mm/mV amplitude calibration.",
-    ]
+    ],
+    image: "/public/ecg-circuit.jpg", // e.g. "/projects/ecg.jpg"
+    placeholderTheme: "cyan",
+    icon: "ecg",
   },
   {
     title: "Mental Health Game Jam 2024 — Social Distancing",
@@ -21,25 +54,33 @@ const projects = [
     repoUrl: null,
     driveUrl: "https://atwp.itch.io/social-distancing",
     driveLabel: "Play on itch.io",
-    highlight: "Original soundtrack composed and produced for a 72-hour game jam entry exploring mental health themes.",
+    highlight:
+      "Original soundtrack composed and produced for a 72-hour game jam entry exploring mental health themes.",
     tags: ["FL Studio", "Adobe Audition", "Composition", "Sound Design"],
     bullets: [
       "Composed and produced the complete audio experience using FL Studio and Adobe Audition.",
       "Collaborated remotely with a game development team under strict jam constraints.",
-    ]
+    ],
+    image: "public/mhgj2024.png", // e.g. "/projects/gamejam.jpg"
+    placeholderTheme: "purple",
+    icon: "music",
   },
   {
     title: "Agate Game Course — 3D Animation (Batch 6, 2024)",
     type: "3D · Education",
     repoUrl: null,
     driveUrl: null,
-    highlight: "Structured 3D animation training as part of a formal game development curriculum.",
+    highlight:
+      "Structured 3D animation training as part of a formal game development curriculum.",
     tags: ["Blender", "Unity", "3D Modeling", "Animation"],
     bullets: [
       "Completed rigging, keyframe animation, and scene composition modules in Blender.",
       "Integrated assets into Unity for real-time 3D rendering and interaction.",
-    ]
-  }
+    ],
+    image: null, // e.g. "/projects/3d_animation.jpg"
+    placeholderTheme: "amber",
+    icon: "box",
+  },
 ];
 ---
 
@@ -49,40 +90,233 @@ const projects = [
     <div class="section-title">Projects</div>
 
     <div class="projects-grid">
-      {projects.map((p) => (
-        <div class="panel">
-          <div class="project-header">
-            <div>
-              <div class="project-title">{p.title}</div>
-              <div style="font-size:0.75rem; color:var(--text-muted); font-family:var(--mono); margin-top:4px;">{p.type}</div>
+      {
+        projects.map((p) => (
+          <div class="panel project-card">
+            {p.image ? (
+              <div class="project-image-container">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  class="project-image"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <div
+                class={`project-image-container placeholder-${p.placeholderTheme}`}
+              >
+                <div class="placeholder-content">
+                  {p.icon === "ecg" && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="placeholder-svg"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                  )}
+                  {p.icon === "music" && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="placeholder-svg"
+                    >
+                      <path d="M12 2v20M17 5v14M22 9v6M7 8v8M2 10v4" />
+                    </svg>
+                  )}
+                  {p.icon === "box" && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="placeholder-svg"
+                    >
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                      <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                  )}
+                </div>
+              </div>
+            )}
+
+            <div class="project-content">
+              <div class="project-header">
+                <div>
+                  <div class="project-title">{p.title}</div>
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:var(--mono); margin-top:4px;">
+                    {p.type}
+                  </div>
+                </div>
+                <div class="project-links">
+                  {p.repoUrl && (
+                    <a
+                      href={p.repoUrl}
+                      target="_blank"
+                      rel="noopener"
+                      class="btn"
+                      style="padding:6px 12px; font-size:0.72rem;"
+                    >
+                      GitHub ↗
+                    </a>
+                  )}
+                  {p.driveUrl && (
+                    <a
+                      href={p.driveUrl}
+                      target="_blank"
+                      rel="noopener"
+                      class="btn"
+                      style="padding:6px 12px; font-size:0.72rem;"
+                    >
+                      {p.driveLabel ?? "Data ↗"}
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <div class="project-highlight">{p.highlight}</div>
+
+              <div class="exp-desc" style="margin-bottom:14px;">
+                <ul>
+                  {p.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="tags">
+                {p.tags.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
             </div>
-            <div class="project-links">
-              {p.repoUrl && (
-                <a href={p.repoUrl} target="_blank" rel="noopener" class="btn" style="padding:6px 12px; font-size:0.72rem;">
-                  GitHub ↗
-                </a>
-              )}
-              {p.driveUrl && (
-                <a href={p.driveUrl} target="_blank" rel="noopener" class="btn" style="padding:6px 12px; font-size:0.72rem;">
-                  {p.driveLabel ?? 'Data ↗'}
-                </a>
-              )}
-            </div>
           </div>
-
-          <div class="project-highlight">{p.highlight}</div>
-
-          <div class="exp-desc" style="margin-bottom:14px;">
-            <ul>
-              {p.bullets.map(b => <li>{b}</li>)}
-            </ul>
-          </div>
-
-          <div class="tags">
-            {p.tags.map(t => <span class="tag">{t}</span>)}
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
+
+<style>
+  .project-card {
+    padding: 0 !important;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    overflow: hidden;
+  }
+
+  .project-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    overflow: hidden;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    transition: border-color 0.25s ease;
+  }
+
+  .project-card:hover .project-image-container {
+    border-color: var(--border-active);
+  }
+
+  .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .project-card:hover .project-image {
+    transform: scale(1.04);
+  }
+
+  .placeholder-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .placeholder-svg {
+    width: 56px;
+    height: 56px;
+    color: var(--theme-color);
+    opacity: 0.7;
+    transition:
+      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      opacity 0.5s ease;
+  }
+
+  .project-card:hover .placeholder-svg {
+    transform: scale(1.12) rotate(3deg);
+    opacity: 1;
+  }
+
+  .placeholder-cyan {
+    background:
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(0, 242, 254, 0.08),
+        transparent 75%
+      ),
+      var(--bg2);
+    --theme-color: #00f2fe;
+  }
+
+  .placeholder-purple {
+    background:
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(168, 85, 247, 0.08),
+        transparent 75%
+      ),
+      var(--bg2);
+    --theme-color: #a855f7;
+  }
+
+  .placeholder-amber {
+    background:
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 184, 106, 0.08),
+        transparent 75%
+      ),
+      var(--bg2);
+    --theme-color: var(--amber);
+  }
+
+  .project-content {
+    padding: 28px 32px;
+  }
+
+  @media (max-width: 768px) {
+    .project-card {
+      grid-template-columns: 1fr;
+    }
+
+    .project-image-container {
+      height: 220px;
+      min-height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+</style>
