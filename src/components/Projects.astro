@@ -6,6 +6,7 @@ const projects = [
     type: "PC - Single Player",
     repoUrl: null,
     driveUrl: null,
+    researchGateUrl: null,
     highlight: "Story-driven anime rally game made with Unreal Engine 5",
     tags: ["Unreal Engine 5", "Anime", "Story-driven", "Rally Games"],
     bullets: [
@@ -40,6 +41,8 @@ const projects = [
     repoUrl: "https://github.com/reyhan-darmawan15/stm32f401-usb-ecg",
     driveUrl:
       "https://drive.google.com/drive/folders/1nCGoXV7f6TMWCsVlI6_14TAxHccEa7LT",
+    researchGateUrl:
+      "https://www.researchgate.net/publication/366256713_Design_of_Computer_Based_12_Lead_ECG_Using_STM32F401_Microcontroller",
     highlight:
       "Full-stack biomedical device — from electrode pads to a live-rendering Windows app — built entirely from scratch.",
     tags: [
@@ -58,7 +61,7 @@ const projects = [
       "Analog front-end on ATmega328P: differential amplifiers (×3), RF filters, 8:1 MUX with sample-and-hold, DC amplifier (×256) across 10 electrode leads.",
       "STM32F401 firmware: SPI-driven 12-bit ADC/DAC, 50 Hz notch filter, LPF 150 Hz, USB CDC transmission — all interrupt & DMA driven.",
       "Galvanic isolation via optoisolators between analog and digital domains for patient safety compliance.",
-      "Windows Forms application with real-time 12-lead display, automated PDF report generation, and CSV data export.",
+      "Windows Forms application with real-time 12-lead display, automated PDF report generation.",
       "Validated PQRST morphology at clinical 25 mm/s sweep speed and 10 mm/mV amplitude calibration.",
     ],
     image: "/ecg-circuit.jpg", // e.g. "/projects/ecg.jpg"
@@ -71,6 +74,7 @@ const projects = [
     repoUrl: null,
     driveUrl: "https://atwp.itch.io/social-distancing",
     driveLabel: "Play on itch.io",
+    researchGateUrl: null,
     highlight:
       "Original soundtrack composed and produced for a 72-hour game jam entry exploring mental health themes.",
     tags: ["FL Studio", "Adobe Audition", "Composition", "Sound Design"],
@@ -87,6 +91,7 @@ const projects = [
     type: "3D · Education",
     repoUrl: null,
     driveUrl: null,
+    researchGateUrl: null,
     highlight:
       "Structured 3D animation training as part of a formal game development curriculum.",
     tags: ["Blender", "Unity", "3D Modeling", "Animation"],
@@ -201,6 +206,17 @@ const projects = [
                       style="padding:6px 12px; font-size:0.72rem;"
                     >
                       {p.driveLabel ?? "Data ↗"}
+                    </a>
+                  )}
+                  {p.researchGateUrl && (
+                    <a
+                      href={p.researchGateUrl}
+                      target="_blank"
+                      rel="noopener"
+                      class="btn"
+                      style="padding:6px 12px; font-size:0.72rem;"
+                    >
+                      ResearchGate ↗
                     </a>
                   )}
                 </div>
